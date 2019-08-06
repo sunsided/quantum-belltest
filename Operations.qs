@@ -16,6 +16,9 @@
 
             for (test in 1..count) {
                 Set (initial, qubit);
+                
+                // Flip the Qubit.
+                X(qubit);
                 let res = M (qubit);
 
                 // Count the number of ones we saw:
