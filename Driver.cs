@@ -9,6 +9,12 @@ namespace Bell
     {
         static void Main(string[] args)
         {
+            // Estimate quantum resources.
+            var estimator = new ResourcesEstimator();
+            BellTest.Run(estimator, 1000, Result.Zero).Wait();
+            System.Console.WriteLine(estimator.ToTSV());
+
+            // Actually run the experiment (assuming the resources are enough).
             using (var qsim = new QuantumSimulator())
             {
                 // Try initial values
