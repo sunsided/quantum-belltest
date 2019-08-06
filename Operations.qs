@@ -3,7 +3,9 @@
     open Microsoft.Quantum.Canon;
     open Microsoft.Quantum.Intrinsic;
 
-    operation HelloQ () : Unit {
-        Message("Hello quantum world!");
+    operation Set (desired: Result, q1: Qubit) : Unit {
+        if (desired != M(q1)) {
+            X(q1);
+        }
     }
 }
