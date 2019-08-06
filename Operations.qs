@@ -9,22 +9,27 @@
         }
     }
 
-    operation BellTest (count : Int, initial: Result) : (Int, Int) {
+    operation BellTest (count: Int, initial: Result) : (Int, Int) {
 
         mutable numOnes = 0;
         using (qubit = Qubit()) {
 
             for (test in 1..count) {
-                Set (initial, qubit);
+
+                // Initialize to a defined state.
+                Set(initial, qubit);
                 
-                // Flip the Qubit.
-                X(qubit);
-                let res = M (qubit);
+                // Superposition the qubit.
+                H(qubit);
+
+                // Measure the qubit.
+                let res = M(qubit);
 
                 // Count the number of ones we saw:
                 if (res == One) {
                     set numOnes += 1;
                 }
+
             }
             Set(Zero, qubit);
         }
