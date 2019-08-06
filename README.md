@@ -33,3 +33,32 @@ You can build and run it on the command line using
 dotnet build
 dotnet run
 ```
+
+## Example output
+
+Here's an example of the program output:
+
+```text
+Resource estimation
+-------------------
+Metric         	Sum
+CNOT           	1000
+QubitClifford  	1000
+R              	0
+Measure        	4002
+T              	0
+Depth          	0
+Width          	2
+BorrowedWidth  	0
+
+Experiment
+----------
+Init:Zero 0s=495  1s=505  agree=1000
+Init:One  0s=499  1s=501  agree=1000
+```
+
+As we see, measuring a qubit's state after putting it into
+superposition via the Hadamard gate (`H()`) makes it collapse
+into either state |0> or |1> with a 50% chance. However,
+since both qubits are entangled (as a Bell pair), both
+measurements are always identical (1000 out of 1000 times).
