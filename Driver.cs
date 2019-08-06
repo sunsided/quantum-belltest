@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Microsoft.Quantum.Simulation.Core;
 using Microsoft.Quantum.Simulation.Simulators;
 
@@ -10,11 +9,16 @@ namespace Bell
         static void Main(string[] args)
         {
             // Estimate quantum resources.
+            Console.WriteLine("Resource estimation");
+            Console.WriteLine("-------------------");
             var estimator = new ResourcesEstimator();
             BellTest.Run(estimator, 1000, Result.Zero).Wait();
-            System.Console.WriteLine(estimator.ToTSV());
+            Console.WriteLine(estimator.ToTSV());
 
             // Actually run the experiment (assuming the resources are enough).
+            Console.WriteLine();
+            Console.WriteLine("Experiment");
+            Console.WriteLine("----------");
             using (var qsim = new QuantumSimulator())
             {
                 // Try initial values
@@ -23,12 +27,13 @@ namespace Bell
                 {
                     var res = BellTest.Run(qsim, 1000, initial).Result;
                     var (numZeros, numOnes, agree) = res;
-                    System.Console.WriteLine(
+                    Console.WriteLine(
                         $"Init:{initial,-4} 0s={numZeros,-4} 1s={numOnes,-4} agree={agree,-4}");
                 }
             }
 
-            System.Console.WriteLine("Press any key to continue...");
+            Console.WriteLine();
+            Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
     }
